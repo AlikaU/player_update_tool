@@ -36,3 +36,21 @@ def test_send_put_request_handle_RequestException():
         responses.PUT, test_url, body=requests.exceptions.RequestException("error while sending request")
     )
     assert not send_put_request(test_url)
+
+def test_is_valid_mac_address_valid_input():
+    assert is_valid_mac_address("a1:bb:cc:dd:ee:ff")
+    assert is_valid_mac_address("FF:FF:FF:FF:FF:FF")
+    assert is_valid_mac_address("00:00:00:00:00:00")
+    assert is_valid_mac_address("00-00-00-00-00-00")
+
+def test_is_valid_mac_address_invalid_input():
+    assert not is_valid_mac_address("g1:bb:cc:dd:ee:ff")
+    assert not is_valid_mac_address("aa1:bb:cc:dd:ee:ff")
+    assert not is_valid_mac_address("a1:bb:cc:dd:ee.ff")
+    assert not is_valid_mac_address(" a1:bb:cc:dd:ee:ff")
+    assert not is_valid_mac_address("a1:bb:cc:dd:ee:ff ")
+    assert not is_valid_mac_address("hi")
+    assert not is_valid_mac_address("(#@&$%^%$)")
+    assert not is_valid_mac_address("a1:bb:cc:dd:ee")
+    assert not is_valid_mac_address("a1:bb:cc:dd:ee:ff:ff")
+    assert not is_valid_mac_address("a1:bb:cc:dd:ee:f")

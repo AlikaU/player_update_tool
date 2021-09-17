@@ -1,9 +1,29 @@
-import requests, json
+import requests, json, csv, re
 
 endpoint = 'http://someendpoint.com'
+mac_addres_regex = r'^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$' # from https://stackoverflow.com/questions/4260467/what-is-a-regular-expression-for-a-mac-address
 
 def main():
-    update_player()
+    try:
+        update_players('input.csv')
+    except Exception:
+        print(f'error while reading input file {input_file}, make sure it is a valid csv file')
+
+
+def update_players(input_file):
+    with open(input_file, 'r') as f:
+        reader = csv.reader(f, skipinitialspace=True)
+        for row in reader:
+            mac_address = row[0]
+            if is_valid_mac_address(mac_address):
+                update_player(mac_address)
+
+
+def is_valid_mac_address(macaddress):
+    word = re.search(mac_addres_regex, macaddress)
+    if not word: return False
+    if word.span() != (0, 17): return False
+    return True
 
 
 def update_player(macaddress):
@@ -34,7 +54,6 @@ def get_auth():
 def get_data():
     with open("example_data.json") as f:
         return json.load(f)
-
 
 
 if __name__ == "__main__":

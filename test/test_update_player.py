@@ -1,18 +1,19 @@
 import responses, json
-from update_player import *
+ 
+from ..update_player import *
 
 test_url = "http://test"
 
 @responses.activate
 def test_send_put_request():
-    with open("example_data.json") as f:
+    with open("test/200.json") as f:
         responses.add(responses.PUT, test_url, json=json.load(f), status=200)
     assert send_put_request(test_url)
 
 
 @responses.activate
 def test_send_put_request_401():
-    with open("401.json") as f:
+    with open("test/401.json") as f:
         responses.add(responses.PUT, test_url, json=json.load(f), status=401)
     assert not send_put_request(test_url)
 

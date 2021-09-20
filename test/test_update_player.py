@@ -6,7 +6,7 @@ test_url = "http://test"
 
 
 def test_valid_csv():
-    assert valid_csv('test/test.csv')
+    assert valid_csv('input/test.csv')
     with pytest.raises(argparse.ArgumentTypeError):
         valid_csv('hi')
         valid_csv('hi.csv')
@@ -15,15 +15,15 @@ def test_valid_csv():
 
 @responses.activate
 def test_update_players():
-    with open("test/200.json") as f:
+    with open("input/200.json") as f:
         responses.add(responses.PUT, 'http://test/profiles/clientId:a1:bb:cc:dd:ee:ff', json=json.load(f), status=200)
-    assert update_players('test/test.csv', test_url, 20)
+    assert update_players('input/test.csv', test_url, 20)
 
 
 @responses.activate
 def test_update_players():
     responses.add(responses.PUT, 'http://test/profiles/clientId:b2:bb:cc:dd:ee:ff', status=500)
-    assert not update_players('test/test_http_error.csv', test_url, 20)
+    assert not update_players('input/test_http_error.csv', test_url, 20)
 
 
 @responses.activate
@@ -57,14 +57,14 @@ def test_is_valid_mac_address_invalid_input():
 
 @responses.activate
 def test_send_put_request():
-    with open("test/200.json") as f:
+    with open("input/200.json") as f:
         responses.add(responses.PUT, test_url, json=json.load(f), status=200)
     assert send_put_request(test_url)
 
 
 @responses.activate
 def test_send_put_request_401():
-    with open("test/401.json") as f:
+    with open("input/401.json") as f:
         responses.add(responses.PUT, test_url, json=json.load(f), status=401)
     assert not send_put_request(test_url)
 

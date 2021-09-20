@@ -75,7 +75,7 @@ def get_auth():
 
 
 def get_data():
-    with open('example_data.json') as f:
+    with open('input/200.json') as f:
         return json.load(f)
 
 

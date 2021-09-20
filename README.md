@@ -6,7 +6,8 @@ Example of a .csv file:
 a1:bb:cc:dd:ee:ff, 1, 2, 3
 a2:bb:cc:dd:ee:ff, 1, 2, 3
 a3:bb:cc:dd:ee:ff, 1, 2, 3
-a4:bb:cc:dd:ee:ff, 1, 2, 3```
+a4:bb:cc:dd:ee:ff, 1, 2, 3
+```
 
 ##Prerequisites:
 python 3.9
@@ -28,7 +29,7 @@ In command line, run:
 Run the server:
 ```python test/server.py```
 In another command line window, run the tool:
-```python update_player.py http://localhost:5000 input.csv```
+```python update_player.py http://localhost:5000 input/input.csv -w 1```
 *Note that some requests will fail because the flask server doesn't handle a lot of concurrent requests.*
 *Note that to test error handling behaviour, the server will return errors for requests for MAC addresses starting with letters 'b', 'c', 'd' or 'e'.*
 

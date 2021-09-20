@@ -6,12 +6,12 @@ app.config["DEBUG"] = True
 
 @app.route('/profiles/clientId:a<client_id>', methods=['PUT'])
 def update_player(client_id):
-    with open("example_data.json") as f:
+    with open("input/200.json") as f:
         return json.dumps(json.load(f))
 
 
 def prepare_resp(status_code):
-    with open(f"test/{status_code}.json") as f:
+    with open(f"input/{status_code}.json") as f:
         return json.dumps(json.load(f)), status_code, {'Content-Type': 'application/json'}
 
 

@@ -15,7 +15,7 @@ def prepare_resp(status_code):
         return json.dumps(json.load(f)), status_code, {'Content-Type': 'application/json'}
 
 
-# just to test all the possible responses, if mac address 
+# just to try all the possible responses, if mac address
 # starts by b, c, d or e, we will return the different errors
 @app.route('/profiles/clientId:b<client_id>', methods=['PUT'])
 def update_player_401(client_id):
@@ -37,4 +37,4 @@ def update_player_500(client_id):
     return prepare_resp(500)
 
 
-app.run()
+app.run(threaded=True)

@@ -2,7 +2,8 @@
 This tool automates the update of music players by using an API. The input is a .csv file containing, at the very minimum, MAC addresses of players to update, always in the first column. The first line of the csv is expected to contain column names.
 
 Example of a .csv file:
-```mac_addresses, id1, id2, id3
+```
+mac_addresses, id1, id2, id3
 a1:bb:cc:dd:ee:ff, 1, 2, 3
 a2:bb:cc:dd:ee:ff, 1, 2, 3
 a3:bb:cc:dd:ee:ff, 1, 2, 3
